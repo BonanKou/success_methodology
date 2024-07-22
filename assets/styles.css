@@ -103,12 +103,12 @@
   }
 
   .red-square {
-    /* content: ''; */
+    content: '';
     display: inline-block;
-    /* width: 1em; */
-    /* height: 1em; */
+    width: 1em;
+    height: 1em;
     background-color: red;
-    /* vertical-align: middle; */
+    vertical-align: middle;
   }
 
   .hide {
