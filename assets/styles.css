@@ -1,0 +1,226 @@
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .swiper-container {
+    padding-bottom: 6%;
+    position: relative;
+  }
+
+  /* .swiper-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+
+  .swiper-slide {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    width: 100% !important;
+    /* padding-bottom: 3%; */
+  }
+
+  .image-container {
+    height: 0;
+    position: relative;
+    width: 30%;
+    padding-bottom: 60%; 
+    overflow: hidden; 
+  }
+
+  .image-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .text-container {
+    width: 40%;
+    padding-left: 10%; 
+    display: flex;
+    align-items: center; 
+  }
+  
+  .text-container p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .swiper-button-next, .swiper-button-prev {
+    color: #000;
+    position: absolute;
+    top: 50%; /* 将按钮垂直居中 */
+    width: auto;
+    /* margin-top: -22px; */
+    padding: 16px;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .swiper-button-next {
+    right: 10px;
+    /* transform: translateY(-500%); */
+  }
+  
+  .swiper-button-prev {
+    left: 10px;
+    /* transform: translateY(-50%); */
+  }
+  
+  .swiper-button-next:hover, .swiper-button-prev:hover {
+    transform: scale(1.2);
+  }
+
+  .swiper-pagination {
+    /* margin-bottom: 3%; */
+  }
+
+  .swiper-pagination-bullet {
+    /* margin-top: 10px; */
+    background: #000;
+  }
+
+
+  .highlight::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: red;
+    vertical-align: middle;
+  }
+
+  .red-square {
+    /* content: ''; */
+    display: inline-block;
+    /* width: 1em; */
+    /* height: 1em; */
+    background-color: red;
+    /* vertical-align: middle; */
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .image_preview_with_text {
+    padding: 0;
+    width: 100%;
+    align-items: baseline;
+    margin: auto;
+    display: flex;
+    background-color: lightblue;
+  }
+
+  .img_placeholder {
+    /* display: block; */
+    width: 30%;
+    height: 100%;
+    /* height: 100%; */
+  }
+
+  #click_to_view {  
+    /* 设置为块级元素，方便控制宽度和高度 */  
+    display: block;  
+    /* 设置宽度和高度，根据需要调整 */  
+    width: 200px; /* 举例宽度 */  
+    height: 50px; /* 举例高度 */  
+    /* 设置背景色为红色 */  
+    background-color: red;  
+    /* 设置文本颜色为白色，以便在红色背景上清晰可见 */  
+    color: white;  
+    /* 文本居中 */  
+    text-align: center;  
+    /* 行高与高度相同，使文本垂直居中 */  
+    line-height: 50px;  
+    /* 可选：添加边框圆角，使按钮看起来更圆润 */  
+    border-radius: 10px;  
+    /* 可选：添加鼠标悬停效果 */  
+    transition: background-color 0.3s; /* 平滑过渡效果 */  
+    cursor: pointer; /* 鼠标悬停时显示手指图标，表明这是一个可点击的元素 */  
+    /* 禁止文本选择，提升用户体验 */  
+    user-select: none;  
+    /* 为了更好的兼容性，可以添加一些前缀属性，比如 -webkit-border-radius 对于一些旧版浏览器 */  
+  }  
+
+  .text-container {
+    /* font-style: italic; */
+    text-indent: 2em;
+    font-size: 1em; /* 调整为原大小的90% */
+    display: block;
+  }
+  
+  .text_preview {
+    flex: 1;
+    margin-left: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 根据需要设置显示的行数 */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    height: auto; /* 让div高度自适应 */
+    max-height: calc(1.2em * 3); /* 1.2em是行高，3是行数 */
+    line-height: 1.2em; /* 设置行高 */
+    position: relative;
+  }
+
+  /* .text_preview::after {
+      content: '...';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: transparent; 与背景颜色相同
+      padding-left: 5px;
+  } */
+
+  .wbq_phone_preview_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.wbq_phone_preview_row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /* margin-bottom: 10px; */
+}
+
+.wbq_phone_preview_img {
+  height: 0;
+  position: relative;
+  width: 30%;
+  padding-bottom: 50%; 
+  overflow: hidden; 
+}
+
+.wbq_phone_preview_img img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center;
+}
+.wbq_phone_preview_text {
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: auto;
+    background-color: transparent;
+}
