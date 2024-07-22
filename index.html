@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的文档</title>
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      // name: '我的文档',
+      repo: '',
+      loadSidebar: true,
+      subMaxLevel: 5,
+      auto2top: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      plugins: [
+        function(hook, vm) {
+          // hook.beforeEach(function (content, next) {
+          //   console.log("BeforeEach")
+          //   // document.addEventListener("DOMContentLoaded", function() {
+          //   //   var iframe = document.getElementById('bilibili-video');
+          //   //   var src = iframe.src;
+          //   //   iframe.src = '';
+          //   //   setTimeout(function() {
+          //   //     iframe.src = src;
+          //   //   }, 1000); // 延迟1秒加载视频，确保不会自动播放
+          //   // });
+
+          //   // // 检查页面是否包含密码验证标记
+          //   // if (content.includes("<!-- password:")) {
+          //   //   var passwords = {
+          //   //     "litianchun": "private_letters/ltc.md",
+          //   //     "tuzhi": "private_letters/tz.md",
+          //   //     "tianyuan": "private_letters/ty.md",
+          //   //     "lilu": "private_letters/ll.md",
+          //   //     "yaoxinkai": "private_letters/yxk.md"
+          //   //   };
+
+          //   //   var password = prompt("请输入密码：");
+
+          //   //   if (passwords[password]) {
+          //   //     fetch(passwords[password])
+          //   //       .then(response => response.text())
+          //   //       .then(data => next(data))
+          //   //       .catch(() => next("加载内容失败。"));
+          //   //   } else {
+          //   //     next("密码错误，请刷新页面重试。");
+          //   //   }
+          //   // } else {
+          //   //   next(content);
+          //   // }
+          // });
+
+          hook.doneEach(function() {
+            console.log("Initializing Swiper...");
+
+            var includes = document.querySelectorAll('[data-include]');
+            var fetchPromises = Array.from(includes).map(function(include) {
+              var file = include.getAttribute('data-include');
+              
+              // 检测设备类型
+              var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+              if (isMobile) {
+                console.log("Mobile!")
+                file = file.replace('.html', '_mobile.html');
+              } else {
+                console.log("PC!")
+                // file = file.replace('.html', '_mobile.html');
+                // file = file.replace('.html', '_mobile.html');
+              }
+
+              return fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                  include.innerHTML = data;
+                })
+                .catch(error => console.error('Error loading include file:', error));
+            });
+
+            Promise.all(fetchPromises).then(() => {  
+              var main = document.querySelector('.content');
+              var headers = main.querySelectorAll('h2, h3, h4, h5, h6');
+              var sectionNumbers = [0, 0, 0, 0, 0, 0];
+
+              headers.forEach(function (header) {
+                var level = parseInt(header.tagName[1]) - 1;
+                sectionNumbers[level - 1]++;
+                for (var i = level; i < sectionNumbers.length; i++) {
+                  sectionNumbers[i] = 0;
+                }
+                var sectionNumber = sectionNumbers.slice(0, level).filter(function (num) {
+                  return num !== 0;
+                }).join('.');
+                header.innerHTML = sectionNumber + ' ' + header.innerHTML;
+              });
+              var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+              if (isMobile) {
+                console.log("Mobile!")
+                document.getElementById('click_to_view').addEventListener('click', function() {
+                    document.getElementById('wwq_first_pic').click();
+                });
+                $('[data-fancybox="gallery"]').fancybox({
+                buttons : [
+                  'slideShow',
+                  'share',
+                  'zoom',
+                  'fullScreen',
+                  'close'
+                ]
+                });
+              } else {
+                console.log("PC!")
+                var swiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                  el: '.swiper-pagination',
+                  clickable: true,
+                },
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+                mousewheel: true,
+                keyboard: {
+                  enabled: true,
+                  onlyInViewport: false,
+                }
+                });
+              }
+            });
+
+
+          });
+        }
+      ]
+    }
+  </script>
+  <script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="assets/scripts.js"></script>
+</body>
+</html>
